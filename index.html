@@ -1,17 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <!--navbar to navigate to highscores and display time()-->
+        <button>High Scores</button>
+        <div>
+          Timer: <span id="timer"><!--time remaining--></span>
+        </div>
+      </nav>
+    </header>
 
+    <main>
+      <section id="start-page">
+        <h1>POP QUIZ</h1>
+        <p>Please answer these questions!</p>
+        <button id="start-btn">Start!</button>
+      </section>
 
+      <section class="hidden" id="game">
+        <h2 id="question">This is where the question goes</h2>
+        <div class="choices">
+          <button class="option">A.</button>
+          <button class="option">B.</button>
+          <button class="option">C.</button>
+          <button class="option">D.</button>
+        </div>
+      </section>
+    </main>
 
     <script src="index.js"></script>
-</body>
+  </body>
 </html>

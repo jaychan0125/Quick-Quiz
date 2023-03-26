@@ -1,0 +1,36 @@
+* {
+    background-color: #fff7e0;
+    line-height: 1.8;
+    
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    background-color: #CFE0C3;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+#start-page {
+    text-align: center;
+}
+
+#game {
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.choices {
+    display: flex;
+    flex-direction: column;  
+    justify-content: center;
+}
+
+
