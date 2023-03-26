@@ -53,21 +53,25 @@ function startQuiz() {
         // console.log(optionBtns[i]) 
         // console.log(quizQuestions[0]['options'][i])
         optionBtns[i].textContent = (quizQuestions[0]['options'][i][0]);  //for each optionBtn(0-3), change text to coresponding choice 
+        optionBtns[i].addEventListener('click', contQuiz)   //Youssef from ask
     }
 
     // //if selected optionBtn is true, display: correct!
     //     if 
 
-    optionBtns.addEventListener('click', contQuiz);
-    function contQuiz() {
-        console.log('move to Q2')
-    }
+
+    console.log(optionBtns)
+    // optionBtns.addEventListener('click', contQuiz);     //doesn't work because cannot attach eventListener to an array
 
 }
 
 
-
-
+function contQuiz() {
+    question.textContent = quizQuestions[1]['question']
+    for (let i = 0; i < optionBtns.length; i++) {
+        optionBtns[i].textContent = (quizQuestions[1]['options'][i][0]);
+    }
+}
 
 
 
