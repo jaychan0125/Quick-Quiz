@@ -2,27 +2,27 @@
 var quizQuestions = [
     {
         qNum: 1,
-        question: 'Which is my fave pokemon?',
+        question: '1. Which is my fave pokemon?',
         options: [['raichu', true], ['digimon', false], ['yugioh', false], ['tamagotchi', false]]
     },
     {
         qNum: 2,
-        question: 'the coldest season is?',
+        question: '2. the coldest season is?',
         options: [['spring', false], ['summer', false], ['fall', false], ['winter', true]]
     },
     {
         qNum: 3,
-        question: 'the most vibrant colour is?',
+        question: '3. the most vibrant colour is?',
         options: [['black', false], ['gray', false], ['yellow', true], ['beige', false]]
     },
     {
         qNum: 4,
-        question: 'the cutest animals are?',
+        question: '4. the cutest animals are?',
         options: [['candy-corn', false], ['raccoons', true], ['fish', false], ['sea-monkeys', false]]
     },
     {
         qNum: 5,
-        question: 'when your head is cold, you should put on...',
+        question: '5. when your head is cold, you should put on...',
         options: [['a hat', true], ['a tshirt', false], ['gloves', false], ['boots', false]]
     }
 ];
@@ -45,33 +45,75 @@ startBtn.addEventListener('click', startQuiz);
 function startQuiz() {
     startPg.setAttribute('class', 'hidden');  //hides the #startPg
     game.setAttribute('class', ''); //un-hides the #game
-
-    //change to show the first question and it's options.
-    question.textContent = quizQuestions[0]['question']
-    //options:
-    for (let i = 0; i < optionBtns.length; i++) {
-        // console.log(optionBtns[i]) 
-        // console.log(quizQuestions[0]['options'][i])
-        optionBtns[i].textContent = (quizQuestions[0]['options'][i][0]);  //for each optionBtn(0-3), change text to coresponding choice 
-        optionBtns[i].addEventListener('click', contQuiz)   //Youssef from ask
-    }
-
-    // //if selected optionBtn is true, display: correct!
-    //     if 
-
-
-    console.log(optionBtns)
-    // optionBtns.addEventListener('click', contQuiz);     //doesn't work because cannot attach eventListener to an array
-
+    showQuestions();
 }
 
+//Q1
+function showQuestions() {
+    //question: 
+    question.textContent = quizQuestions[0]['question'] //change to show the first question and it's options.
+    //options: index i
+    for (let i = 0; i < optionBtns.length; i++) {
+        optionBtns[i].textContent = (quizQuestions[0]['options'][i][0]);  //for each optionBtn(0-3), change text to coresponding choice 
+    }
+    //make each button 'clickable'
+    for (let b = 0; b < optionBtns.length; b++) {
+        optionBtns[b].addEventListener('click', contQuiz);   //askBCS:Youssef  <--add eventListener to SINGLE ITEM in the optionBtns(ARRAY). eventListeners canNOT be added to an array!! 
+    }
+}
 
+//Q2
 function contQuiz() {
-    question.textContent = quizQuestions[1]['question']
+    //questions: index-q
+    question.textContent = quizQuestions[1]['question'];
+
+    //options: index i
     for (let i = 0; i < optionBtns.length; i++) {
         optionBtns[i].textContent = (quizQuestions[1]['options'][i][0]);
     }
+    //make each button 'clickable'
+    for (let b = 0; b < optionBtns.length; b++) {
+        optionBtns[b].addEventListener('click', contQuiz1)   //askBCS:Youssef  <--add eventListener to SINGLE ITEM in the optionBtns(ARRAY). eventListeners canNOT be added to an array!! 
+    }
 }
+
+//Q3
+function contQuiz1() {
+    //questions: index-q
+    // for (let q = 1; q < optionBtns.length; q++) {
+        question.textContent = quizQuestions[2]['question']
+    }
+
+    //options: index i
+    for (let i = 0; i < optionBtns.length; i++) {
+        optionBtns[i].textContent = (quizQuestions[2]['options'][i][0]);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
