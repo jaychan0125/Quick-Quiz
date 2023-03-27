@@ -1,139 +1,115 @@
-//questions in quiz are in an ARRAY, each question is an Object with property: valuesArray. the correct value is true. 
+//best practice to decalre all variables at top
+//questions in quiz are in an ARRAY, each question is an Object with properties: options valuesArray, and correct value
 var quizQuestions = [
     {
-        qNum: 1,
         question: '1. Which is my fave pokemon?',
-        options: [['raichu', true], ['digimon', false], ['yugioh', false], ['tamagotchi', false]]
+        options: ['raichu', 'digimon', 'yugioh', 'tamagotchi'],
+        correct: 'raichu'
     },
     {
-        qNum: 2,
         question: '2. the coldest season is?',
-        options: [['spring', false], ['summer', false], ['fall', false], ['winter', true]]
+        options: ['spring', 'summer', 'fall', 'winter'],
+        correct: 'true'
     },
     {
-        qNum: 3,
         question: '3. the most vibrant colour is?',
-        options: [['black', false], ['gray', false], ['yellow', true], ['beige', false]]
+        options: ['black', 'gray', 'yellow', 'beige'],
+        correct: 'yellow'
     },
     {
-        qNum: 4,
         question: '4. the cutest animals are?',
-        options: [['candy-corn', false], ['raccoons', true], ['fish', false], ['sea-monkeys', false]]
+        options: ['candy-corn', 'raccoons', 'fish', 'sea-monkeys'],
+        correct: 'raccoons'
     },
     {
-        qNum: 5,
         question: '5. when your head is cold, you should put on...',
-        options: [['a hat', true], ['a tshirt', false], ['gloves', false], ['boots', false]]
+        options: ['a hat', 'a tshirt', 'gloves', 'boots'],
+        correct: 'a hat'
     }
 ];
 var score = 0;
 var timeLeft = 60; //60seconds
+var questionNum = 0; //global scoped variable can be used in/altered by functions, but will still be accessible everywhere
 
 //variables from HTML
 var startBtn = document.querySelector('#start-btn');
 var startPg = document.querySelector("#start-page")
 var game = document.querySelector('#game');
 var question = document.querySelector('#question');
-// var choices = document.querySelector('.choices');
+var choices = document.querySelector('.choices');
 var optionBtns = document.querySelectorAll('.option');  //returns an array: 4 class='option' buttons (0-3)
 var timer = document.querySelector('#timer');
+var message = document.querySelector('#message');
 
-
-//click start button: Show the first question and it's choices. 
-
-startBtn.addEventListener('click', startQuiz);
+//startBtn: hides the intro and shows the quiz with first question
 function startQuiz() {
+    //if we declared questionNum here, it would get function scoped and unusable elsewehere 
     startPg.setAttribute('class', 'hidden');  //hides the #startPg
-    game.setAttribute('class', ''); //un-hides the #game
+    game.classList.remove('hidden'); //un-hides the #game 
     showQuestions();
 }
 
-//Q1
+//when option button is clicked, will check if correct choice, will increment to next questionNum
+function gradeUserChoice(e) {  
+    console.log(e);  //logs: PointerEvent
+    console.log(e.target);  //logs: div class=choices /button class=option
+    var thingClicked = e.target; //rn, click eventListener is attached to the div(choices) parenting the buttons .: clicking outside the buttons will still invoke the function
+    if (thingClicked.matches('button')) { //to ensure that what we're clicking on is a button
+        var buttonText = thingClicked.textContent;
+        //if the button clicked on is the right choice
+        if(buttonText == quizQuestions[questionNum]['correct']) {
+            message.textContent = 'You selected correctly! Good job! 🦝';
+            score = score + 10;
+        } else {
+            message.textContent = 'Oops! Wrong selection! -5 seconds! 🗑️';
+            timeLeft = timeLeft - 5;
+        }
+        // if questionNum () is the same value as the length of quizQuestions - 1
+        // then you know you were at your last question
+        // now what do you do
+        console.log(questionNum);
+        if (questionNum == quizQuestions.length - 1) {
+            // do something:  Game over page! 
+         
+            return;  //to jump out of this function(gradeUserChoice), so the last two lines of code do not run!!
+        }
+        //increment questionNum
+        questionNum++;
+        showQuestions();
+    }
+}
+
+//where questionNum is then passed to this function, so that it changes the question we are on 
 function showQuestions() {
-    //question: 
-    question.textContent = quizQuestions[0]['question'] //change to show the first question and it's options.
-    //options: index i
-    for (let i = 0; i < optionBtns.length; i++) {
-        optionBtns[i].textContent = (quizQuestions[0]['options'][i][0]);  //for each optionBtn(0-3), change text to coresponding choice 
-    }
-    //make each button 'clickable'
-    for (let b = 0; b < optionBtns.length; b++) {
-        optionBtns[b].addEventListener('click', contQuiz);   //askBCS:Youssef  <--add eventListener to SINGLE ITEM in the optionBtns(ARRAY). eventListeners canNOT be added to an array!! 
+    question.textContent = quizQuestions[questionNum]['question']; //change to show the first question and it's options.
+    for (var i = 0; i < optionBtns.length; i++) {
+        optionBtns[i].textContent = (quizQuestions[questionNum]['options'][i]);  //for each optionBtn(0-3), change text to coresponding choice 
     }
 }
 
-//Q2
-function contQuiz() {
-    //questions: index-q
-    question.textContent = quizQuestions[1]['question'];
-
-    //options: index i
-    for (let i = 0; i < optionBtns.length; i++) {
-        optionBtns[i].textContent = (quizQuestions[1]['options'][i][0]);
-    }
-    //make each button 'clickable'
-    for (let b = 0; b < optionBtns.length; b++) {
-        optionBtns[b].addEventListener('click', contQuiz1)   //askBCS:Youssef  <--add eventListener to SINGLE ITEM in the optionBtns(ARRAY). eventListeners canNOT be added to an array!! 
-    }
-}
-
-//Q3
-function contQuiz1() {
-    //questions: index-q
-    // for (let q = 1; q < optionBtns.length; q++) {
-        question.textContent = quizQuestions[2]['question']
-    }
-
-    //options: index i
-    for (let i = 0; i < optionBtns.length; i++) {
-        optionBtns[i].textContent = (quizQuestions[2]['options'][i][0]);
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//when change happens, start timer. 60seconds
-var countdown = setInterval(timerStart, 1000);  //interval of 1second
-
+//startBtn: starts timer. 60seconds
 function timerStart() {
-    timeLeft--;
-    timer.innerText = `${timeLeft} sec`;
-    if (timeLeft === 0) {
-        clearInterval(countdown);
-    }
+    console.log('timer started');
+    var countdown = setInterval(function () {
+        timeLeft--;
+        timer.innerText = `${timeLeft} sec`;
+        if (timeLeft <= 0) {
+            clearInterval(countdown);
+            timer.innerText = 'Times up!'
+            // run some other function that shows the page for receiving user name and score
+        }
+    }, 1000);  //interval of 1second
 }
+
+
+//EVENTLISTENER FOR: timer runs to 0: go to game over page
+
+
+//best practice to have eventListeners at the bottom
+//click START button: Show the first question and it's choices, and starts timer
+startBtn.addEventListener('click', startQuiz);
+startBtn.addEventListener('click', timerStart);
+choices.addEventListener('click', gradeUserChoice);
+
 
 
