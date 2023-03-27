@@ -1,7 +1,7 @@
 * {
     background-color: #fff7e0;
     line-height: 1.8;
-    
+    font-family: sans-serif;
 }
 
 nav {
@@ -15,16 +15,22 @@ button {
     border-radius: 5px;
 }
 
-#start-page {
-    text-align: center;
+form {
+    display: flex;
+    flex-direction: column;
 }
 
-#game {
+section {
     text-align: center;
 }
 
 .hidden {
     display: none;
+}
+
+/* similar to display:none, but keeps position */
+.nav-hide {
+    visibility: hidden;  
 }
 
 .choices {
@@ -33,4 +39,7 @@ button {
     justify-content: center;
 }
 
-
+#score-history {
+    font-size: larger;
+    font-weight: 800;
+}

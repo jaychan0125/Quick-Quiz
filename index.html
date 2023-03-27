@@ -10,10 +10,9 @@
   <body>
     <header>
       <nav>
-        <!--navbar to navigate to highscores and display time()-->
-        <button>High Scores</button>
-        <div id="timer">
-          Timer: <span id="timeLeft"><!--time remaining--></span>
+        <button id="high-score">Previous Score</button>
+        <div class="nav-hide" id="timer">
+          Timer: <span id="timeLeft"></span>
         </div>
       </nav>
     </header>
@@ -34,6 +33,29 @@
           <button class="option">D.</button>
         </div>
         <div class="message" id="message">Here your message will appear!</div>
+      </section>
+
+      <section class="hidden" id="game-over">
+        <h2>Game Over!</h2>
+        <h3>Your Score: <span id="final-score"></span></h3>
+        <form id="userInitials" method="post">
+          <label for="userId">Please enter your initials: </label>
+          <input
+            type="text"
+            id="userId"
+            name="userId"
+            placeholder="AZ"
+            maxlength="2"
+          />
+          <button id="save-button">Submit</button>
+        </form>
+        <a href="index.html"><button class="return-to-game-button">return to game</button></a>
+      </section>
+
+      <section class="hidden" id="hiscore-page">
+        <h2>Previous Score:</h2>
+        <div id="score-history"></div>
+        <a href="index.html"><button class="return-to-game-button">return to game</button></a>
       </section>
     </main>
 
