@@ -7,22 +7,22 @@ var quizQuestions = [
         correct: 'raichu'
     },
     {
-        question: '2. the coldest season is?',
+        question: '2. Which is the coldest season?',
         options: ['spring', 'summer', 'fall', 'winter'],
         correct: 'true'
     },
     {
-        question: '3. the most vibrant colour is?',
+        question: '3. The most vibrant colour is?',
         options: ['black', 'gray', 'yellow', 'beige'],
         correct: 'yellow'
     },
     {
-        question: '4. the cutest animals are?',
+        question: '4. The cutest animals are?',
         options: ['candy-corn', 'raccoons', 'fish', 'sea-monkeys'],
         correct: 'raccoons'
     },
     {
-        question: '5. when your head is cold, you should put on...',
+        question: '5. When your head is cold, you should put on...',
         options: ['a hat', 'a tshirt', 'gloves', 'boots'],
         correct: 'a hat'
     }

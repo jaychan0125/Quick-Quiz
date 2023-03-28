@@ -74,7 +74,7 @@ Once done, you'll be prompted to put your initials in to save your score! Hit th
 
 ![Previous Score](./Assets/quiz-prevScore.png) 
 
-As shown here! I'm sure you can beat my score! You'll also have a button return to the start page of the game.
+I'm sure you can beat my score! You'll also have a button return to the start page of the game.
 
 
 ## Citations
