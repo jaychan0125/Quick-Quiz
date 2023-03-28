@@ -53,18 +53,27 @@ THEN I can save my initials and my score
 ## Usage
 
 ![Start Page](./Assets/quiz-start.png) 
+
 When first entering the quiz, you'll be given instructions to answer the quiz questions! Start by hitting the 'Start!' button!
 
+
 ![Quiz Questions](./Assets/quiz-q.png) 
+
 After you start, you'll be given a question with 4 options for answers! A timer will also start giving you 60seconds to complete the quiz. Every answer you click will bring you to the next question! 
 
+
 ![Oops!](./Assets/quiz-wrongAns.png) 
+
 Be careful! If you answer wrong, you'll lose 5seconds off your time! If the time runs out, the game is over!   
 
+
 ![Finished](./Assets/quiz-done.png) 
+
 Once done, you'll be prompted to put your initials in to save your score! Hit the 'Submit' button to do so! Your score is the amount of time you have left. You can view your previous score, but pressing the 'Previous Score' button.
 
+
 ![Previous Score](./Assets/quiz-prevScore.png) 
+
 As shown here! I'm sure you can beat my score! You'll also have a button return to the start page of the game.
 
 
