@@ -59,10 +59,10 @@ function startQuiz() {
     showQuestions();
 }
 
-//when option button is clicked, will check if correct choice, will increment to next questionNum
+//when option button is clicked, will check if correct choice: will increment to next questionNum; if wrong will lose time
 function gradeUserChoice(e) {
     // console.log(e);  //logs: PointerEvent
-    // console.log(e.target);  //logs: div class=choices /button class=option
+    // console.log(e.target);  //logs: div class=choices/button class=option (depending on what clicked)
     var thingClicked = e.target; //rn, click eventListener is attached to the div(choices) parenting the buttons .: clicking outside the buttons will still invoke the function
     if (thingClicked.matches('button')) { //to ensure that what we're clicking on is a button
         var buttonText = thingClicked.textContent;
@@ -70,7 +70,7 @@ function gradeUserChoice(e) {
         if (buttonText == quizQuestions[questionNum]['correct']) {
             message.textContent = 'You selected correctly! Good job! 🦝';
             score = timeLeft;
-        } else {
+        } else {  //if wrong, lose time
             message.textContent = 'Oops! Wrong selection! -5 seconds! 🗑️';
             timeLeft = timeLeft - 5;
         }
@@ -81,7 +81,7 @@ function gradeUserChoice(e) {
             gameOverPg();
             return;  //to jump out of this function(gradeUserChoice), so the last two lines of code do not run!!
         }
-        //increment questionNum
+        //increment questionNum regardless of right/wrong. just as long as button is clicked
         questionNum++;
         showQuestions();
     }
@@ -103,9 +103,8 @@ function timerStart() {
         timer.innerText = `${timeLeft} sec`;
         if (timeLeft <= 0) {
             clearInterval(countdown);
-            timer.innerText = 'Times up!' //WHY WONT THIS WORK
-            // run some other function that shows the page for receiving user name and score
-            gameOver();
+            timer.innerText = 'Times up!'
+            gameOverPg();
         } else if (questionNum == quizQuestions.length - 1) {
             clearInterval(countdown);
             timer.innerText = 'Finished! 🦝'
@@ -113,7 +112,7 @@ function timerStart() {
     }, 1000);  //interval of 1second
 }
 
-//when timer=0 OR 
+//when timer=0 OR all questions used, redirect here:
 function gameOverPg() {
     game.setAttribute('class', 'hidden');  //hides the #game
     gameOver.classList.remove('hidden'); //shows #gameOver

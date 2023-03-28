@@ -1,23 +1,41 @@
-# 04 Web APIs: Code Quiz
+# Quick Quiz!
 
-## Your Task
+## 04 Web APIs: Code Quiz
 
-At some point in your journey to become a full-stack web developer, you’ll likely be asked to complete a coding assessment&mdash;perhaps as part of an interview process. A typical coding assessment includes both multiple-choice questions and interactive coding challenges. 
+For this challenge, we're tasked with making a quiz from scratch; this time using JavaScript to add functionality! I had to review so many notes, look up so many things, take mental health breaks, and break it down to tiny pieces for this one! I literally studied Objects for a day, and event objects are still confusing to me(especially when using them with an eventListner and function). Some of the most important concepts making my code work was definitely scope and code placement. I also got some best practices reiterated to me such as: placing variables on top, eventListeners at the bottom, and to try not to complicate things too much. It was definitely a challenge stringing my thought process of: When this happens, I want this to happen; and then adding the functionality of HOW to make it happen. I am learning a lot for sure! 
 
-To help familiarize you with these tests and allow you to use the skills covered in this module, this Challenge invites you to build a timed coding quiz with multiple-choice questions. This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean, polished, and responsive user interface. 
+One of the biggest struggles for me for this challenge was adding functionality to all the choice buttons, as well as getting a different option to display on all of them in a more concise manner. I think this stumped me for a few days!
+Originally I tried adding an eventListener to my optionBtns, which didn’t work as it was an array. So I tried to loop though the array to add an eventListener to each button in it! But that ended up being messy, so I got some guidance to add functionality that targets the parent container instead and then narrow it down so that it would only work if I clicked on specific things (buttons) within the target container (Compagnoni,2023)! 
+The other part was figuring out how to condense my code of adding a new question/option to every new page of my quiz. Originally my loop made it so that it just iterated through the whole thing and ended up at the last question. I was working with 2 live variables in this one, so I was a bit confused. I got the majority of the equation down, I was just confused on how to change the questionNum variable per click, and with help realised that if I declared the variable in the global scope, it could be used everywhere and functions below the declaration would still affect the value how I wanted it (Compagnoni,2023)! 
 
-This week’s coursework will equip you with all the skills you need to succeed in this assignment.
+I’m now wondering how many webpages actually load, because I always thought normally when I clicked on something it would just bring me to like a new webpage, rather than dynamically changing it after an event? 
 
-## User Story
 
+## Table of Contents
+
+- [Deployment](#deployment)
+- [Requirements](#requirements)
+- [Usage](#usage)
+- [Citations](#citations)
+- [License](#license)
+
+## Deployment
+
+Link to my mini quiz: 
+
+**https://jaychan0125.github.io/Quick-Quiz/**
+
+## Requirements
+
+Here are the provided requirements:
+### User Story
 ```
 AS A coding boot camp student
 I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
 SO THAT I can gauge my progress compared to my peers
 ```
 
-## Acceptance Criteria
-
+### Acceptance Criteria
 ```
 GIVEN I am taking a code quiz
 WHEN I click the start button
@@ -32,68 +50,41 @@ WHEN the game is over
 THEN I can save my initials and my score
 ```
 
-## Mock-Up
+## Usage
 
-The following animation demonstrates the application functionality:
+![Start Page](./Assets/quiz-start.png) 
+When first entering the quiz, you'll be given instructions to answer the quiz questions! Start by hitting the 'Start!' button!
 
-![A user clicks through an interactive coding quiz, then enters initials to save the high score before resetting and starting over.](./Assets/04-web-apis-homework-demo.gif)
+![Quiz Questions](./Assets/quiz-q.png) 
+After you start, you'll be given a question with 4 options for answers! A timer will also start giving you 60seconds to complete the quiz. Every answer you click will bring you to the next question! 
 
-## Grading Requirements
+![Oops!](./Assets/quiz-wrongAns.png) 
+Be careful! If you answer wrong, you'll lose 5seconds off your time! If the time runs out, the game is over!   
 
-> **Note**: If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
->
-> * A repository that has no code
->
-> * A repository that includes a unique name but nothing else
->
-> * A repository that includes only a README file but nothing else
->
-> * A repository that only includes starter code
+![Finished](./Assets/quiz-done.png) 
+Once done, you'll be prompted to put your initials in to save your score! Hit the 'Submit' button to do so! Your score is the amount of time you have left. You can view your previous score, but pressing the 'Previous Score' button.
 
-This Challenge is graded based on the following criteria: 
+![Previous Score](./Assets/quiz-prevScore.png) 
+As shown here! I'm sure you can beat my score! You'll also have a button return to the start page of the game.
 
-### Technical Acceptance Criteria: 40%
 
-* Satisfies all of the preceding acceptance criteria.
+## Citations
 
-### Deployment: 32%
+Maqsood, A., Moatar, T., Krishna, &amp; Zhang, S. (2023). Web APIs Day 1-3. Lecture. 
 
-* Application deployed at live URL.
+Compagnoni, J. (2023). Tutoring.
 
-* Application loads with no errors.
+## License
 
-* Application GitHub URL submitted.
-
-* GitHub repository contains application code.
-
-### Application Quality: 15%
-
-* Application user experience is intuitive and easy to navigate.
-
-* Application user interface style is clean and polished.
-
-* Application resembles the mock-up functionality provided in the Challenge instructions.
-
-### Repository Quality: 13%
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains quality readme file with description, screenshot, and link to deployed application.
-
-## Review
-
-You are required to submit BOTH of the following for review:
-
-* The URL of the functional, deployed application.
-
-* The URL of the GitHub repository, with a unique name and a readme describing the project.
+Licensed under the MIT license.
 
 ---
 
-© 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+
+
+
+
+
+
+
+
