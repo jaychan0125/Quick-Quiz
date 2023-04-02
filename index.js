@@ -9,7 +9,7 @@ var quizQuestions = [
     {
         question: '2. Which is the coldest season?',
         options: ['spring', 'summer', 'fall', 'winter'],
-        correct: 'true'
+        correct: 'winter'
     },
     {
         question: '3. The most vibrant colour is?',
