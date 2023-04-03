@@ -9,7 +9,7 @@ var quizQuestions = [
     {
         question: '2. Which is the coldest season?',
         options: ['spring', 'summer', 'fall', 'winter'],
-        correct: 'true'
+        correct: 'winter'
     },
     {
         question: '3. The most vibrant colour is?',
@@ -30,6 +30,8 @@ var quizQuestions = [
 var score = 0;
 var timeLeft = 60; //60seconds
 var questionNum = 0; //global scoped variable can be used in/altered by functions, but will still be accessible everywhere
+var countdown;
+var savedUserScoresArray = JSON.parse(localStorage.getItem('scores')) || [];
 
 //variables from HTML
 var startBtn = document.querySelector('#start-btn');
@@ -55,7 +57,7 @@ function startQuiz() {
     startPg.setAttribute('class', 'hidden');  //hides the #startPg
     game.classList.remove('hidden'); //un-hides the #game
     timer.classList.remove('nav-hide');
-    hiScoreBtn.setAttribute('class','nav-hide')
+    hiScoreBtn.setAttribute('class', 'nav-hide')
     showQuestions();
 }
 
@@ -74,21 +76,26 @@ function gradeUserChoice(e) {
             message.textContent = 'Oops! Wrong selection! -5 seconds! 🗑️';
             timeLeft = timeLeft - 5;
         }
+
         // if questionNum () is the same value as the (length of quizQuestions - 1), then you're at your last question
         //console.log(questionNum);
-        if (questionNum == quizQuestions.length - 1) {
+        questionNum++;
+        if (questionNum == quizQuestions.length) {
             // do something:  run gameover function
+            clearInterval(countdown);
+            timer.innerText = 'Finished! 🦝'
             gameOverPg();
-            return;  //to jump out of this function(gradeUserChoice), so the last two lines of code do not run!!
+            return null;  //to jump out of this function(gradeUserChoice), so the last two lines of code do not run!!
         }
         //increment questionNum regardless of right/wrong. just as long as button is clicked
-        questionNum++;
+
         showQuestions();
     }
 }
 
 //where questionNum is then passed to this function, so that it changes the question we are on 
 function showQuestions() {
+    console.log('questionNum is', questionNum);
     question.textContent = quizQuestions[questionNum]['question']; //change to show the first question and it's options.
     for (var i = 0; i < optionBtns.length; i++) {
         optionBtns[i].textContent = (quizQuestions[questionNum]['options'][i]);  //for each optionBtn(0-3), change text to coresponding choice 
@@ -98,16 +105,13 @@ function showQuestions() {
 //startBtn: starts timer-60seconds
 function timerStart() {
     // console.log('timer started');
-    var countdown = setInterval(function () {
+    countdown = setInterval(function () {
         timeLeft--;
         timer.innerText = `${timeLeft} sec`;
         if (timeLeft <= 0) {
             clearInterval(countdown);
             timer.innerText = 'Times up!'
             gameOverPg();
-        } else if (questionNum == quizQuestions.length - 1) {
-            clearInterval(countdown);
-            timer.innerText = 'Finished! 🦝'
         }
     }, 1000);  //interval of 1second
 }
@@ -116,16 +120,29 @@ function timerStart() {
 function gameOverPg() {
     game.setAttribute('class', 'hidden');  //hides the #game
     gameOver.classList.remove('hidden'); //shows #gameOver
-    hiScoreBtn.setAttribute('class',''); //shows hiScoreBtn
+    hiScoreBtn.setAttribute('class', ''); //shows hiScoreBtn
     finalScore.textContent = timeLeft;
 }
+
 //when click event on saveBtn
 function saveInfo(event) {
     event.preventDefault(event);
-    localStorage.setItem('userId', JSON.stringify(userId.value));
-    localStorage.setItem('userScore', JSON.stringify(timeLeft));
+    //create an alert for them to enter initials to save score
+    if (!userId.value) {
+        alert("Please enter initials to save.");
+        return;
+    }
+    //create an object to store the input: 
+    var savedScore = {
+        id: userId.value,
+        score: timeLeft
+    }
+    //save scores to front of array:
+    savedUserScoresArray.unshift(savedScore)
+    //cap the length of the saved scores array to five:
+    savedUserScoresArray.length >= savedUserScoresArray.splice(5,1) : null;  //ternary operator: if there are 6+ items in the array, cut the item at index 5, otherwise nothing
+    localStorage.setItem('scores', JSON.stringify(savedUserScoresArray));
 }
-
 
 function hiScorePg() {
     scoreResults.classList.remove('hidden');
@@ -133,9 +150,16 @@ function hiScorePg() {
     game.setAttribute('class', 'hidden');
     gameOver.setAttribute('class', 'hidden');
     timer.setAttribute('class', 'nav-hide');
-    var savedUser = JSON.parse(localStorage.getItem('userId'));
-    var savedScore = JSON.parse(localStorage.getItem('userScore'));
-    scoreHistory.textContent = `${savedUser} : ${savedScore}`;
+    var scoresArray = JSON.parse(localStorage.getItem('scores'));
+    scoresArray.map( function(arrayItem) {  //like a loop
+        var id = arrayItem.id;
+        var score = arrayItem.score;
+        var li = document.createElement('li');
+        li.textContent = `${id} : ${score}`;
+        scoreHistory.append(li);
+    })
+    // var savedScore = JSON.parse(localStorage.getItem('userScore'));
+    // scoreHistory.textContent = `${savedUser} : ${savedScore}`;
 }
 
 

@@ -24,6 +24,10 @@ section {
     text-align: center;
 }
 
+li {
+    list-style-type: none;
+}
+
 .hidden {
     display: none;
 }
