@@ -158,8 +158,6 @@ function hiScorePg() {
         li.textContent = `${id} : ${score}`;
         scoreHistory.append(li);
     })
-    // var savedScore = JSON.parse(localStorage.getItem('userScore'));
-    // scoreHistory.textContent = `${savedUser} : ${savedScore}`;
 }
 
 
